@@ -2,7 +2,7 @@
 
 A statistical tool that analyzes stock price and volume data to detect patterns that *may* indicate institutional trading activity.
 
-![DARPOL Demo](demo.gif)
+![DARPOL Demo](darpoldemo.gif)
 
 ## What It Does
 
