@@ -1,8 +1,8 @@
 # DARPOL — Liquidity Absorption Detector
 
-A web-based tool that analyzes stock price and volume data to detect patterns that *may* indicate institutional trading activity.
+A statistical tool that analyzes stock price and volume data to detect patterns that *may* indicate institutional trading activity.
 
-![DARPOL Dashboard](screenshot.png)
+![DARPOL Demo](demo.gif)
 
 ## What It Does
 
