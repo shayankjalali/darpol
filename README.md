@@ -30,7 +30,7 @@ Use this as one input among many in your analysis, not as a definitive signal.
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/darpol.git
+git clone https://github.com/shayankjalali/darpol.git
 cd darpol
 
 # Install dependencies
@@ -44,7 +44,7 @@ Then open `http://localhost:5000` in your browser.
 
 ## Usage
 
-1. Enter a stock ticker (e.g., AAPL, TSLA, MSFT)
+1. Enter a stock ticker (e.g., AAPL, TSLA, MSFT, or Canadian stocks like ET.TO)
 2. Select time interval (1min to 1hour)
 3. Select lookback period (1 day to 1 month)
 4. Adjust absorption weight if desired (how much to weight absorption vs VWAP signals in the score)
@@ -55,6 +55,8 @@ Then open `http://localhost:5000` in your browser.
 The score (0-100) is a weighted combination of:
 - **Absorption signals:** Sum of log(1 + z-score) for each signal
 - **VWAP signals:** Sum of log(1 + |z-score|) for each signal
+
+The raw score is multiplied by a calibration factor derived from running the detector across multiple tickers (AAPL, TSLA, GME, SPY, etc.) to normalize the 0-100 range. Run `calibrate.py` to recalibrate if needed.
 
 Higher scores indicate more detected patterns. A score of 100 means significant activity detected; a score near 0 means minimal activity.
 
@@ -88,8 +90,6 @@ darpol/
 
 1. **Cannot see actual dark pool data** — Only infers from public price/volume
 2. **False positives** — Normal market activity can trigger signals
-3. **Historical data only** — Not real-time
-4. **US stocks only** — Via Yahoo Finance
 
 ## Future Improvements
 
@@ -104,4 +104,4 @@ MIT
 
 ## Author
 
-Built by [Your Name] as a learning project in quantitative finance.
+Built by Shayan Jalali as a learning project in quantitative finance.
