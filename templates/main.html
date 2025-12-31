@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DARPOL — Liquidity Absorption Terminal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">DARPOL</div>
+        <div class="header-controls">
+            <div class="control-group">
+                <span class="control-label">Symbol</span>
+                <input type="text" id="ticker-input" placeholder="e.g. AAPL">
+            </div>
+            <div class="control-group">
+                <span class="control-label">Interval</span>
+                <select id="interval">
+                    <option value="1m">1 min</option>
+                    <option value="5m" selected>5 min</option>
+                    <option value="15m">15 min</option>
+                    <option value="30m">30 min</option>
+                    <option value="1h">1 hour</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <span class="control-label">Period</span>
+                <select id="period">
+                    <option value="1d">1 Day</option>
+                    <option value="5d" selected>5 Days</option>
+                    <option value="7d">7 Days</option>
+                    <option value="1mo">1 Month</option>
+                </select>
+            </div>
+            <div class="weight-control">
+                <span class="control-label">Absorption Weight</span>
+                <div class="weight-input-box">
+                    <input type="number" id="weight" value="50" min="0" max="100">
+                    <span>%</span>
+                </div>
+            </div>
+            <button class="run-btn" id="run-btn">Analyze</button>
+        </div>
+    </header>
+
+    <div class="stats-bar">
+        <div class="stat">
+            <span class="stat-label">Symbol</span>
+            <span class="stat-value" id="stat-symbol">—</span>
+        </div>
+        <div class="stat">
+            <span class="stat-label">Score</span>
+            <span class="stat-value" id="score">—</span>
+        </div>
+        <div class="stat">
+            <span class="stat-label">Activity</span>
+            <span class="stat-value" id="activity">—</span>
+        </div>
+        <div class="stat">
+            <span class="stat-label">Absorption</span>
+            <span class="stat-value cyan" id="absorption-count">—</span>
+        </div>
+        <div class="stat">
+            <span class="stat-label">VWAP</span>
+            <span class="stat-value purple" id="vwap-count">—</span>
+        </div>
+        <div class="stat">
+            <span class="stat-label">High</span>
+            <span class="stat-value positive" id="high-price">—</span>
+        </div>
+        <div class="stat">
+            <span class="stat-label">Low</span>
+            <span class="stat-value negative" id="low-price">—</span>
+        </div>
+        <div class="stat">
+            <span class="stat-label">Bars</span>
+            <span class="stat-value" id="bar-count">—</span>
+        </div>
+    </div>
+
+    <div class="main-layout">
+        <div class="chart-panel">
+            <!-- Price Chart -->
+            <div class="chart-section">
+                <div class="chart-header">
+                    <span class="chart-title">Price</span>
+                    <span class="chart-info" id="price-info"></span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="price-chart"></canvas>
+                </div>
+            </div>
+            <!-- Volume Chart -->
+            <div class="chart-section">
+                <div class="chart-header">
+                    <span class="chart-title">Volume</span>
+                    <span class="chart-info" id="volume-info"></span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="volume-chart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="signals-panel">
+            <div class="signals-header">
+                <span class="signals-title">Signals</span>
+                <div class="filter-group">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="absorption">Absorption</button>
+                    <button class="filter-btn" data-filter="vwap">VWAP</button>
+                </div>
+            </div>
+            <div class="signals-list" id="signals-list">
+                <div class="empty-state">No signals yet</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <span class="modal-title" id="modal-title">Signal Details</span>
+                <button class="modal-close" id="modal-close">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
