@@ -44,7 +44,7 @@ Then open `http://localhost:5000` in your browser.
 
 ## Usage
 
-1. Enter a stock ticker (e.g., AAPL, TSLA, MSFT, or Canadian stocks like ET.TO)
+1. Enter a stock ticker (e.g., AAPL, TSLA, MSFT, or Canadian stocks like SHOP.TO)
 2. Select time interval (1min to 1hour)
 3. Select lookback period (1 day to 1 month)
 4. Adjust absorption weight if desired (how much to weight absorption vs VWAP signals in the score)
